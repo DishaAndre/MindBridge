@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Calming sky blue for trust and stability */
+    --color-primary: #4FC3F7; /* light-blue-300 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors - Gentle purple for wisdom and understanding */
+    --color-secondary: #AB47BC; /* purple-400 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors - Soft green for growth and positive progress */
+    --color-accent: #66BB6A; /* green-400 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Background Colors - Warm white for comfortable reading */
+    --color-background: #FAFAFA; /* gray-50 */
+    --color-foreground: #2E2E2E; /* gray-800 */
+    
+    /* Surface Colors - Subtle card depth */
+    --color-card: #F5F5F5; /* gray-100 */
+    --color-card-foreground: #2E2E2E; /* gray-800 */
+    
+    /* Popover Colors */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #2E2E2E; /* gray-800 */
+    
+    /* Muted Colors - Supporting information */
+    --color-muted: #F5F5F5; /* gray-100 */
+    --color-muted-foreground: #757575; /* gray-600 */
+    
+    /* Destructive Colors - Soft pink for helpful correction */
+    --color-destructive: #F06292; /* pink-300 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    
+    /* Success Colors - Encouraging green for completed actions */
+    --color-success: #81C784; /* green-300 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    /* Warning Colors - Gentle orange for attention */
+    --color-warning: #FFB74D; /* orange-300 */
+    --color-warning-foreground: #2E2E2E; /* gray-800 */
+    
+    /* Error Colors - Soft pink for helpful correction */
+    --color-error: #F06292; /* pink-300 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    /* Border and Input Colors */
+    --color-border: rgba(117, 117, 117, 0.3); /* gray-600 with opacity */
+    --color-input: #F5F5F5; /* gray-100 */
+    --color-ring: #4FC3F7; /* light-blue-300 */
+    
+    /* Brand-specific Colors */
+    --color-brand-primary: #4A90E2; /* blue-500 */
+    --color-brand-secondary: #B8A9FF; /* purple-300 */
+    --color-conversion-accent: #52C41A; /* green-500 */
+    --color-trust-builder: #1890FF; /* blue-600 */
+    --color-cta: #FF6B6B; /* red-400 */
+    
+    /* Spacing and Layout */
+    --radius: 12px;
+    --breath-scale: 1.02;
+  }
+
+  .dark {
+    --color-background: #1A1A1A; /* gray-900 */
+    --color-foreground: #FAFAFA; /* gray-50 */
+    --color-card: #2E2E2E; /* gray-800 */
+    --color-card-foreground: #FAFAFA; /* gray-50 */
+    --color-popover: #2E2E2E; /* gray-800 */
+    --color-popover-foreground: #FAFAFA; /* gray-50 */
+    --color-muted: #2E2E2E; /* gray-800 */
+    --color-muted-foreground: #BDBDBD; /* gray-400 */
+    --color-border: rgba(189, 189, 189, 0.3); /* gray-400 with opacity */
+    --color-input: #2E2E2E; /* gray-800 */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Sidebar Styles */
+  .sidebar {
+    @apply fixed top-0 left-0 h-full bg-card shadow-lg transition-all duration-300 ease-out z-40;
+    width: 280px;
+  }
+
+  .sidebar.collapsed {
+    width: 80px;
+  }
+
+  .sidebar-header {
+    @apply flex items-center justify-center p-6 border-b border-border;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    border-radius: 0 0 12px 12px;
+    min-height: 80px;
+  }
+
+  .sidebar.collapsed .sidebar-header {
+    @apply p-4;
+    min-height: 64px;
+  }
+
+  .sidebar-logo {
+    @apply flex items-center justify-center rounded-xl transition-all duration-300;
+    background: rgba(255, 255, 255, 0.2);
+    width: 56px;
+    height: 56px;
+  }
+
+  .sidebar.collapsed .sidebar-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sidebar-logo-text {
+    @apply ml-3 text-xl font-bold text-white transition-opacity duration-300;
+  }
+
+  .sidebar.collapsed .sidebar-logo-text {
+    @apply opacity-0 w-0 ml-0;
+  }
+
+  .sidebar-nav {
+    @apply flex flex-col gap-2 p-4;
+  }
+
+  .sidebar-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-foreground transition-all duration-300 ease-out cursor-pointer;
+  }
+
+  .sidebar-nav-item:hover {
+    @apply bg-muted;
+    transform: translateX(4px);
+  }
+
+  .sidebar-nav-item.active {
+    @apply bg-primary text-primary-foreground shadow-md;
+  }
+
+  .sidebar.collapsed .sidebar-nav-item {
+    @apply justify-center px-3;
+  }
+
+  .sidebar-nav-item-text {
+    @apply transition-opacity duration-300 whitespace-nowrap;
+  }
+
+  .sidebar.collapsed .sidebar-nav-item-text {
+    @apply opacity-0 w-0;
+  }
+
+  /* Header Styles */
+  .header {
+    @apply bg-card shadow-md transition-all duration-300 ease-out;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 280px;
+    height: 72px;
+    z-index: 30;
+  }
+
+  .header.sidebar-collapsed {
+    left: 80px;
+  }
+
+  .header-content {
+    @apply flex items-center justify-between h-full px-6;
+  }
+
+  .header-left {
+    @apply flex items-center gap-4;
+  }
+
+  .header-right {
+    @apply flex items-center gap-4;
+  }
+
+  /* Mobile Menu Button */
+  .mobile-menu-button {
+    @apply lg:hidden fixed top-4 left-4 z-50 p-3 rounded-xl bg-card shadow-lg transition-all duration-300;
+  }
+
+  .mobile-menu-button:hover {
+    @apply bg-muted;
+    transform: scale(1.05);
+  }
+
+  /* Mobile Overlay */
+  .mobile-overlay {
+    @apply lg:hidden fixed inset-0 bg-background z-30 transition-opacity duration-300;
+  }
+
+  /* Main Content */
+  .main-content {
+    @apply transition-all duration-300 ease-out pt-20;
+    margin-left: 280px;
+    min-height: 100vh;
+  }
+
+  .main-content.sidebar-collapsed {
+    margin-left: 80px;
+  }
+
+  /* Breathing Animation */
+  @keyframes breathe {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(var(--breath-scale));
+    }
+  }
+
+  .breathing {
+    animation: breathe 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Celebration Animation */
+  @keyframes celebrate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .celebrate {
+    animation: celebrate 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Gentle Pulse */
+  @keyframes gentle-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .gentle-pulse {
+    animation: gentle-pulse 2s ease-in-out infinite;
+  }
+
+  /* Crisis Support Badge */
+  .crisis-badge {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-error text-error-foreground font-medium shadow-md;
+    animation: gentle-pulse 2s ease-in-out infinite;
+  }
+
+  /* User Profile Avatar */
+  .user-avatar {
+    @apply w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold cursor-pointer transition-transform duration-300;
+  }
+
+  .user-avatar:hover {
+    transform: scale(1.1);
+  }
+
+  /* Mood Indicator */
+  .mood-indicator {
+    @apply flex items-center gap-2 px-4 py-2 rounded-xl bg-muted transition-all duration-300 cursor-pointer;
+  }
+
+  .mood-indicator:hover {
+    @apply bg-accent text-accent-foreground;
+    transform: translateY(-2px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .header {
+      left: 0;
+    }
+
+    .main-content {
+      margin-left: 0;
+    }
+
+    .sidebar {
+      transform: translateX(-100%);
+    }
+
+    .sidebar.mobile-open {
+      transform: translateX(0);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Accessibility utilities */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+# Netlify redirects for React SPA
+# Handle client-side routing
+
+# Redirect old route to new route
+/mood-journey-visualization /mood-journey-visualizer 301
+
+# SPA fallback - must be last
+/* /index.html 200
